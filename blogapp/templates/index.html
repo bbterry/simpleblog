@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}style.css">
+  </head> 
+  <body>
+	  <div>
+		{% ifequal status "logout" %}
+		<a href="logout"><button>Logout</button></a>
+		<a href="add_post"><button>Post</button></a>
+		{% endifequal %}
+		{% ifequal status "login" %}
+		<a href="login"><button>Login</button></a>
+		<a href="register"><button>Register</button></a>
+		{% endifequal %}
+	  </div>
+      <h1>Simple Blog</h1>
+      {% for post in Posts %}
+      <h2> {{ post.title }} </h2>
+	  <p>Author: {{ post.author.username}}</p>
+      <p>Date Added: {{ post.date_added }}</p>
+      <p>{{ post.content }}</p>
+      <img src="api/{{ post.image_id.id }}" alt="uploaded photo" height="200">
+	  {% if username == post.author.username or SecurityLevel == 10 %}
+      <form method="get" action="delete/">
+          <input type="hidden" name="id" value="{{post.id}}">
+		  <input type="hidden" name="username" value="{{post.author.username}}">
+          <input type="submit" value="delete" class="normal-submit">
+      </form>
+	  {% endif %}
+      {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}style.css">
+  </head> 
+  <body>
+ 	  <a href="/logout"><button>Logout</button></a>
+	  <a href="/"><button>Home</button></a>
+      <h1>Simple Blog</h1>
+      <form method="post" action="add_post" enctype="multipart/form-data">
+      {% csrf_token %}
+          <ul>
+              <li>
+                  <textarea name="title" name="title" placeholder="Post Title" rows=1 cols=80 required></textarea>
+              </li>
+              <li>
+                  <textarea name="content" placeholder="Enter Content" rows=10 cols=80 required></textarea>
+              </li>
+              <li>
+                  <input type="file" name="img">
+                  <input type="text" name="fileName" placeholder="Enter File Name">
+				  Visible to:
+				  <select name="viewable">
+					<option value='P'>Public</option>
+					<option value='N' selected="selected">Network</option>
+				  </select>
+              </li>
+              <li>
+                  <input type="submit" value="Add Post" class="normal-submit">
+              </li>
+          </ul>
+      </form>
+  </body>
+</html>

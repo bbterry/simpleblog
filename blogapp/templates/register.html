@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Simple Blog</title>
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}style.css">
+</head>
+
+<body>
+	<div>
+		<a href="/"><button>Home</button></a>
+		<a href="/login"><button>Login</button></a>
+		<h1>Simple Blog</h1>
+		<div class="login" style="margin-top:100px">
+			<form method="post" action="/register/">
+				{% csrf_token %}
+				<input type="text" class="login-text" name="username" class="username" placeholder="Username" required>
+				<input type="password" name="password" class="password" placeholder="Password" required>
+				<input type="password" name="password_repeat" class="password" placeholder="Repeat password" required>
+				<input type="submit" class="login-submit" value="Sign Up" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>

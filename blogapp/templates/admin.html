@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 	  <title>Simple Blog Admin</title>
+      <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}style.css">
+  </head> 
+  <body>
+	  <div>
+		<a href="/logout"><button>Logout</button></a>
+		<a href="/"><button>Home</button></a>
+		<h1>Simple Blog</h1>
+		<div style="margin-left:40%; margin-top:100px">
+		  <table>
+			<tr>
+				<td>Username</td>
+				<td>Security Level</td>
+				<td>Operation</td>
+			</tr>
+		  {% for user in Users %}
+			<tr>
+				<td>{{ user.username }}</td>
+				<td>{{ user.security_level }}</td>
+				<td>      
+					<form method="post" action="">
+					{% csrf_token %}
+					<input type="hidden" name="username" value="{{user.username}}">
+					<input type="submit" value="verify" class="normal-submit">
+					</form>
+				</td>
+			</tr>
+		  {% endfor %}
+		  </table>
+		 </div>
+	  </div>
+  </body>
+</html>
